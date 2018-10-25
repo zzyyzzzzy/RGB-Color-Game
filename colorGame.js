@@ -54,7 +54,7 @@ function setupCircles(){
 				h1.style.background = clickedColor;
 			} else {
 				this.style.background = document.querySelector("body").background;
-				this.style.boxShadow = "";
+				this.style.boxShadow = "0 0px 0px -0px black";
 				messageDisplay.textContent = "Try Again :("
 			}
 		});
@@ -78,7 +78,6 @@ function reset(){
 			circles[i].style.background = colors[i];
 		} else {
 			circles[i].style.display = "none";
-			circles[i].style.boxShadow = "";
 		}
 	}
 	h1.style.background = "steelblue";
@@ -93,6 +92,7 @@ function changeColors(color){
 	for(var i = 0; i < circles.length; i++){
 		//change each color to match given color
 		circles[i].style.background = color;
+		circles[i].style.boxShadow = "0 8px 6px -6px black";
 	}
 }
 
