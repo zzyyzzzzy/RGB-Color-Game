@@ -1,15 +1,16 @@
-var numCircles = 6;
+var numCircles = 3;
 var colors = [];
 var pickedColor;
-var circles = document.querySelectorAll(".circle");
-var colorDisplay = document.getElementById("colorDisplay");
-var messageDisplay = document.querySelector("#message");
-var h1 = document.querySelector("h1");
+var circles = $(".circle");
+var colorDisplay = $("#colorDisplay");
+var messageDisplay = $("#message");
+var h1 = $("h1");
 var resetButton = document.querySelector("#reset");
 var modeButtons = document.querySelectorAll(".mode");
 
 
 init();
+
 
 function init(){
 	setupModeButtons();
@@ -48,14 +49,15 @@ function setupCircles(){
 			var clickedColor = this.style.background;
 			//compare color to pickedColor
 			if(clickedColor === pickedColor){
-				messageDisplay.textContent = "Correct!!";
+				messageDisplay.text("Correct!!!");
+				messageDisplay.css({color:pickedColor, fontSize:"125%", fontWeight:"bold"});
 				resetButton.textContent = "Play Again?"
 				changeColors(clickedColor);
-				h1.style.background = clickedColor;
+				h1.css({background: clickedColor});
 			} else {
 				this.style.background = document.querySelector("body").background;
 				this.style.boxShadow = "0 0px 0px -0px black";
-				messageDisplay.textContent = "Try Again :("
+				messageDisplay.text("Try Again :(");
 			}
 		});
 	}
@@ -68,9 +70,10 @@ function reset(){
 	//pick a new random color from array
 	pickedColor = pickColor();
 	//change colorDisplay to match picked Color
-	colorDisplay.textContent = pickedColor;
+	colorDisplay.text(pickColor);
 	resetButton.textContent = "New Colors"
-	messageDisplay.textContent = "";
+	messageDisplay.text("");
+	messageDisplay.css({color:"black", fontSize:"100%", fontWeight:"normal"});
 	//change colors of circles
 	for(var i = 0; i < circles.length; i++){
 		if(colors[i]){
@@ -80,7 +83,7 @@ function reset(){
 			circles[i].style.display = "none";
 		}
 	}
-	h1.style.background = "steelblue";
+	h1.css({background: "steelblue"});
 }
 
 resetButton.addEventListener("click", function(){
