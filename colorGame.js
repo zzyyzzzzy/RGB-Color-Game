@@ -1,3 +1,4 @@
+//seletct all variables to be modified
 var numCircles = 3;
 var colors = [];
 var pickedColor;
@@ -7,47 +8,48 @@ var messageDisplay = $("#message");
 var h1 = $("h1");
 var resetButton = $("#reset");
 var modeButtons = $(".mode");
-
+var dificulty = $("#dropdownMenu2");
 
 init();
 
 
 function init(){
-	setupModeButtons();
+	setupButtons();
 	setupCircles();
 	reset();
 }
 
-function setupModeButtons(){
+//setup buttons in dropdown menu
+function setupButtons(){
+	resetButton.on("click", function(){
+		reset();
+	});
 	modeButtons.on("click", function(){
-		removeSelect();
+		modeButtons.removeClass("selected");
 		this.classList.add("selected");
 		if (this.textContent === "Easy") {
 			numCircles = 3;
+			dificulty.text("Easy");
 		} else if (this.textContent === "Hard") {
 			numCircles = 6;
+			dificulty.text("Hard");
 		} else {
 			numCircles = 9;
+			dificulty.text("Expert");
 		}
 		reset();
 	});
 }
 
-function removeSelect() {
-	modeButtons.removeClass("selected");
-}
-
+//setup all circles to be displayed
 function setupCircles(){
-	//add click listeners to circles
 	circles.on("click", function(){
-		//grab color of clicked circle
 		var clickedColor = this.style.background;
-		//compare color to pickedColor
 		if(clickedColor === pickedColor){
 			messageDisplay.text("Correct!!!");
 			messageDisplay.css({color:pickedColor, fontSize:"125%", fontWeight:"bold"});
 			resetButton.text("Play Again?");
-			changeColors(clickedColor);
+			circles.css({background: clickedColor, boxShadow:"0 8px 6px -6px black"});
 			h1.css({background: clickedColor});
 		} else {
 			this.style.background = $("body").css("background");
@@ -57,16 +59,14 @@ function setupCircles(){
 	});
 }
 
+//pick a new color and reset all the settings
 function reset(){
 	colors = generateRandomColors(numCircles);
-	//pick a new random color from array
 	pickedColor = pickColor();
-	//change colorDisplay to match picked Color
 	colorDisplay.text(pickColor);
 	resetButton.text("New Colors");
 	messageDisplay.text("");
 	messageDisplay.css({color:"black", fontSize:"100%", fontWeight:"normal"});
-	//change colors of circles
 	for(var i = 0; i < circles.length; i++){
 		if(colors[i]){
 			circles[i].style.display = "block"
@@ -76,20 +76,15 @@ function reset(){
 		}
 	}
 	h1.css({background: "steelblue"});
-	resetButton.on("click", function(){
-		reset();
-	});
 }
 
-function changeColors(color){
-	circles.css({background: color, boxShadow:"0 8px 6px -6px black"});
-}
-
+//pick a color for user to gusses
 function pickColor(){
 	var random = Math.floor(Math.random() * colors.length);
 	return colors[random];
 }
 
+//generate random rgb colors depend on num
 function generateRandomColors(num){
 	var arr = []
 	for(var i = 0; i < num; i++){
@@ -98,6 +93,7 @@ function generateRandomColors(num){
 	return arr;
 }
 
+//pick a random rgb color
 function randomColor(){
 	var r = Math.floor(Math.random() * 256);
 	var g = Math.floor(Math.random() * 256);
