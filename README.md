@@ -3,4 +3,4 @@ This was a project inspired by a web design course I took. I had to combine skil
 
 The purpose of the website is to let people to get familiar with RGB color system.
 
-This is a game for Link: https://zzyyzzzzy.github.io/RGB-Color-Game/
+Link: https://zzyyzzzzy.github.io/RGB-Color-Game/
