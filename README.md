@@ -3,6 +3,6 @@ This was a project inspired by a web design course I took. I had to combine skil
 
 The purpose of the website is to let people to get familiar with RGB color system.
 
-(https://img.imoutomoe.net/image/4gewS)
+![Image of Color Game](https://img.imoutomoe.net/images/2019/07/22/-2019-07-21-7.49.29.png)
 
 Link: https://zzyyzzzzy.github.io/RGB-Color-Game/
